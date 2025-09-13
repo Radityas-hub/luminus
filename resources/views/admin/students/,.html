@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Pembayaran untuk Kursus: {{ $course->title }}</h2>
+        <form action="{{ route('payment.process') }}" method="POST">
+            @csrf
+            <input type="hidden" name="course_id" value="{{ $course->id }}">
+            <div class="form-group">
+                <label for="payment_method">Metode Pembayaran</label>
+                <select name="payment_method" id="payment_method" class="form-control" required>
+                    <option value="credit_card">Kartu Kredit</option>
+                    <option value="bank_transfer">Transfer Bank</option>
+                    <option value="paypal">PayPal</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Bayar Sekarang</button>
+        </form>
+    </div>
+    
+    
+</body>
+</html>

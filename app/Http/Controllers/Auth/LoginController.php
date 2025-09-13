@@ -28,9 +28,13 @@ class LoginController extends Controller
 
         $request->session()->regenerate();
 
+        // Redirect based on user role
         if (Auth::user()->role === 'admin') {
             return redirect()->intended('/admin/dashboard');
+        } elseif (Auth::user()->role === 'instructor') {
+            return redirect()->intended('/instructor/dashboard');
+        } else {
+            return redirect()->intended('/siswa/dashboard');
         }
-        return redirect()->intended('/siswa/dashboard');
     }
 }

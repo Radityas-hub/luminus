@@ -32,6 +32,6 @@ class SendOtpNotification extends Notification
             ->line('**' . $this->otp . '**')
             ->line('Kode ini akan kadaluarsa dalam 10 menit.')
             ->line('Jika Anda tidak melakukan permintaan ini, abaikan email ini.')
-            ->salutation('Salam,<br>Tim Luminus');
+            ->salutation('Salam,Tim Luminus');
     }
 }

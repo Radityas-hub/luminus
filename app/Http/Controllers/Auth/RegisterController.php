@@ -32,16 +32,16 @@ class RegisterController extends Controller
 
         return redirect()->route('verification.notice');
     }
-
     protected function validator(array $data)
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'gender' => ['required', 'string', 'in:L,P'],
         ]);
     }
-
+    
     protected function create(array $data)
     {
         $otp = rand(100000, 999999);
@@ -49,7 +49,8 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'role' => 'siswa', // Default role
+            'gender' => $data['gender'], // Will store L or P
+            'role' => 'siswa',
             'otp' => $otp,
             'otp_expires_at' => Carbon::now()->addMinutes(10),
         ]);
